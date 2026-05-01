@@ -1,4 +1,4 @@
-"""PyWebview API exposed to frontend."""
+"""PyWebview API exposed to frontend with detailed logging."""
 import os
 import subprocess
 import platform

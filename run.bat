@@ -25,11 +25,20 @@ if errorlevel 1 (
     )
 )
 
-echo [2/2] 启动应用...
-python backend\main.py
+REM Clean pycache to avoid stale compiled code
+echo [2/2] 清理旧缓存...
+if exist "backend\__pycache__" (
+    rmdir /s /q "backend\__pycache__" 2>nul
+)
+
+echo 启动应用...
+echo.
+REM -u = unbuffered output so errors show immediately
+python -u backend\main.py
 if errorlevel 1 (
     echo.
-    echo [错误] 应用异常退出
+    echo [错误] 应用异常退出 (代码: %errorlevel%)
+    echo 如果窗口一闪而过，请运行 test.bat 检查环境
     pause
     exit /b 1
 )
